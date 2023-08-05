@@ -11,6 +11,6 @@ async function bootstrap() {
   console.log(join(__dirname, '../../uploads')); //thêm này cho phần static file
   app.useStaticAssets(join(__dirname, '../../uploads')); //thêm này cho phần static file
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3000);
+  await app.listen(process.env.PORT, '0.0.0.0');
 }
 bootstrap();
