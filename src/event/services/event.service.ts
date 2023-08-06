@@ -214,6 +214,19 @@ export class EventService {
     this.eventRepository.update(eventId, { status: StatusEvent.REJECT });
     return event;
   }
+  async cancelEvent(eventId: string, username: string) {
+    const event = await this.getEventById(eventId);
+    if (event.status === StatusEvent.REJECT) {
+      throw new BadRequestException(
+        `event was ${String(event.status).toLowerCase()}`,
+      );
+    }
+    if (event.creator !== username) {
+      throw new ForbiddenException();
+    }
+    this.eventRepository.update(eventId, { status: StatusEvent.REJECT });
+    return event;
+  }
   async joinEvent(user: User, eventId: string) {
     const event = await this.getEventById(eventId);
     if (event.status !== StatusEvent.APPROVED) {

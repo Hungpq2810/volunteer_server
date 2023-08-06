@@ -138,4 +138,15 @@ export class EventController {
       eventId: event.id,
     });
   }
+  @UseGuards(AuthGuard())
+  @Patch('cancel/:eventId')
+  async cancelEvent(@Param() { eventId }, @Req() req: any) {
+    const event = await this.eventService.cancelEvent(
+      eventId,
+      req.user.username,
+    );
+    return SuccessResponse.send('Cancel event successful', {
+      eventId: event.id,
+    });
+  }
 }
