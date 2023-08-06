@@ -113,7 +113,7 @@ export class UserService {
   }
 
   async getUsers(query: OptionsQueryUser) {
-    const limit = Number(query.limit) || 10;
+    const limit = Number(query.limit) || 1000000;
     const page = Number(query.page) || 1;
 
     const skip = (page - 1) * limit;
