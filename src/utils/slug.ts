@@ -1,6 +1,7 @@
 import slugify from 'slugify';
 
 export const convertStringToSlug = (string: string) => {
+  if (!string) return;
   return slugify(string, {
     replacement: '-', // replace spaces with replacement character, defaults to `-`
     remove: undefined, // remove characters that match regex, defaults to `undefined`

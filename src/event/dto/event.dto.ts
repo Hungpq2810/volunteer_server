@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsDate, IsEnum, IsInt, IsNotEmpty, Min } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
 
 export enum CategoryEvent {
   EDUCATION = 'Education',
@@ -41,19 +42,7 @@ export class CreateEventDto {
   link: string;
 }
 
-export class UpdateEventDto {
-  image?: string;
-  name?: string;
-  description?: string;
-  category?: CategoryEvent;
-  location?: string;
-  maxVolunteers?: number;
-  startDate?: Date;
-  endDate?: Date;
-  link?: string;
-  creator?: string;
-  status?: StatusEvent;
-}
+export class UpdateEventDto extends PartialType(CreateEventDto) {}
 
 export class OptionsQueryEvent {
   page?: string;

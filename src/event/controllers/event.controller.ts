@@ -91,6 +91,8 @@ export class EventController {
     @Body() body: UpdateEventDto,
     @Req() req: any,
   ) {
+    console.log(body);
+
     const event = await this.eventService.updateEventById(eventId, {
       ...body,
       link: convertStringToSlug(body.name),
